@@ -25,6 +25,33 @@ client.user.setStatus("onLine");
 });
 
 
+
+
+
+client.on('ready', () => {
+   console.log(`----------------`);
+      console.log(`Desert Bot- Script By : i1Suhaib`);
+        console.log(`----------------`);
+      console.log(`ON ${client.guilds.size} Servers '     Script By : i1Suhaib ' `);
+    console.log(`----------------`);
+  console.log(`Logged in as ${client.user.tag}!`);
+client.user.setGame(`$helpadm | shieldbot`)
+client.user.setStatus("onLine")
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 client.on('message' , message => {
   var prefix = "$";
   if(message.author.bot) return;
