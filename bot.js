@@ -30,31 +30,6 @@ client.user.setStatus("online");
 
 
 
-
-
-client.on('ready', () => {
-   console.log(`----------------`);
-      console.log(`Desert Bot- Script By : i1Suhaib`);
-        console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : i1Suhaib ' `);
-    console.log(`----------------`);
-  console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`$help | shieldbot`)
-client.user.setStatus("onLine")
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
 client.on('message' , message => {
   var prefix = "$";
   if(message.author.bot) return;
@@ -66,6 +41,19 @@ client.on('message' , message => {
  });
 
 
+
+
+client.on('message', message => {
+     if (message.content === "$help") {
+message.author.send("** [❖═════اوامر البوت═══════❖]**" + `  **
+❖ $ping : معرفت سرعة الاتصال
+❖ $id : معلوماتك
+[❖═══════admins═══════❖]
+❖ $help-admin
+[❖═══════--------------------═══════❖]
+**`);
+    }
+});     
 
 
 
@@ -90,6 +78,100 @@ client.on('message', message => {
 
 
 
+
+
+
+
+client.on('message', message => {
+      if (message.author.bot) return;
+      var prefix ="$"
+       if (message.content === prefix + "help-admin") {
+        if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
+       message.channel.send('**تم ارسال رسالة في الخاص**');
+  
+  
+  
+  
+   message.author.sendMessage(`
+   **
+  [❖═════اومر ادمن═══════❖]
+ ❖ $mutec : اقلاق الجات
+  
+  ❖ $unmutec : تفتح الجات
+  
+  ❖ $cchat : مسح الجات
+  
+  ❖ $kick
+  
+  **
+  `);
+  
+      }
+  });
+  
+  
+  
+
+
+
+
+
+
+
+client.on('message', message => {
+var prefix = "$";
+       if(message.content === prefix + "mutec") {
+                           if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' **__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: false
+
+              }).then(() => {
+                  message.reply("**__تم تقفيل الشات__ ✅ **")
+              });
+                }
+//FIRE BOT
+    if(message.content === prefix + "unmutec") {
+                        if(!message.channel.guild) return message.reply('** This command only for servers**');
+
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**__ليس لديك صلاحيات__**');
+              message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: true
+
+              }).then(() => {
+                  message.reply("**__تم فتح الشات__✅**")
+              });
+    }
+       
+});
+
+
+
+
+
+
+
+client.on("message", message => {
+              var prefix = "$";;
+              if (message.content.startsWith(prefix + "cchat")) {
+                  if(!message.channel.guild) return message.reply('**❌ ليس لديك رتبة ادمن **');         
+     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**🚫  MANAGE_MESSAGES ليس لديك رتبة ادمن او بريم 🚫 **');
+          var msg;
+          msg = parseInt(); ///KillerFox AlphaCodes
+        
+        message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error); ///KillerFox AlphaCodes
+        message.channel.sendMessage("", {embed: { ///KillerFox AlphaCodes
+          title: "** ➡ تــم مسح الشات ⬅ **",
+          color: 0x06DF00,
+          footer: { ///KillerFox AlphaCodes
+            
+          }
+        }}).then(msg => {msg.delete(10000)});
+                            }
+  
+       
+  });
 
 
 
@@ -143,54 +225,5 @@ client.on('message', message => {
 
 
 
-client.on('message', message => {
-      if (message.author.bot) return;
-      var prefix ="$"
-       if (message.content === prefix + "helpadm") {
-        if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-       message.channel.send('**تم ارسال رسالة في الخاص**');
+
   
-  
-  
-  
-   message.author.sendMessage(`
-   **
-             اومر ادمن
-
-
-[❖...........مسح الجات............❖]
-             ❖$clear                
-[❖...........الطرد...........❖]
-            ❖$kick                 
-  
-  **
-  `);
-  
-      }
-  });
-
-
-client.on("message", message => {
-              var prefix = "$";;
-              if (message.content.startsWith(prefix + "clear")) {
-                  if(!message.channel.guild) return message.reply('**❌ ليس لديك رتبة ادمن **');         
-     if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('**🚫  MANAGE_MESSAGES ليس لديك رتبة ادمن او بريم 🚫 **');
-          var msg;
-          msg = parseInt(); ///tnt
-        
-        message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error); ///tnt
-        message.channel.sendMessage("", {embed: { ///tnt
-          title: "** ➡ تــم مسح الشات ⬅ **",
-          color: 0x06DF00,
-          footer: { ///tnt
-            
-          }
-        }}).then(msg => {msg.delete(10000)});
-                            }
-  
-       
-  });
-
-
-
-
